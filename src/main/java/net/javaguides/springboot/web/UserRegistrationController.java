@@ -1,5 +1,7 @@
 package net.javaguides.springboot.web;
 
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +16,9 @@ import net.javaguides.springboot.web.dto.UserRegistrationDto;
 @RequestMapping("/registration")
 public class UserRegistrationController {
 
+	@Autowired
 	private UserService userService;
+	private static final Logger logger = Logger.getLogger(net.javaguides.springboot.web.Controller.class);
 
 	public UserRegistrationController(UserService userService) {
 		super();
@@ -34,6 +38,7 @@ public class UserRegistrationController {
 	@PostMapping
 	public String registerUserAccount(@ModelAttribute("user") UserRegistrationDto registrationDto) {
 		userService.save(registrationDto, registrationDto.getRole());
+		logger.info(String.format("Created new User by name %s", registrationDto.getLastName() + registrationDto.getLastName()));
 		return "redirect:/registration?success";
 	}
 }

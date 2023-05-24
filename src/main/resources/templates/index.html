@@ -1,46 +1,101 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-<meta charset="ISO-8859-1">
-<title>Registration and Login App</title>
+	<meta charset="UTF-8">
+	<title>Registration and Login App</title>
 
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-	crossorigin="anonymous">
+	<link rel="stylesheet"
+		  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+		  integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+		  crossorigin="anonymous">
+
+	<style>
+	/* Custom Styles */
+	body {
+		padding-top: 70px;
+	}
+
+	.container {
+		max-width: 600px;
+		margin: 0 auto;
+		text-align: center;
+	}
+
+	h1 {
+		font-size: 28px;
+		margin-bottom: 20px;
+	}
+
+	.navbar-inverse {
+		background-color: #333;
+		border-color: #222;
+	}
+
+	.navbar-inverse .navbar-brand {
+		color: #fff;
+	}
+
+	.navbar-inverse .navbar-nav > li > a {
+		color: #fff;
+	}
+
+	.navbar-inverse .navbar-nav > li > a:hover,
+	.navbar-inverse .navbar-nav > li > a:focus {
+		background-color: #222;
+	}
+
+	.logout-link {
+		color: #fff;
+		font-weight: bold;
+	}
+
+	.logout-link:hover,
+	.logout-link:focus {
+		color: #ccc;
+		text-decoration: none;
+	}
+</style>
 
 </head>
 <body>
-	<!-- create navigation bar ( header) -->
-	<nav class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed"
+<!-- create navigation bar (header) -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed"
 					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
 					aria-controls="navbar">
-					<span class="sr-only">Toggle navigation</span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="#" th:href="@{/}">Registration and
-					Login Module</a>
-			</div>
-			<div id="navbar" class="collapse navbar-collapse">
-				<ul class="nav navbar-nav">
-					<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
-				</ul>
-			</div>
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#" th:href="@{/}">Registration and
+				Login Module</a>
 		</div>
-	</nav>
-
-	<br>
-	<br>
-
-	<div class="container">
-		<h1>Registration and Login with Spring Boot, Spring Security,
-			Thymeleaf, Hibernate and MySQL</h1>
-		Welcome <span sec:authentication="principal.username"> User</span>
+		<div id="navbar" class="collapse navbar-collapse">
+			<ul class="nav navbar-nav">
+				<li sec:authorize="isAuthenticated()">
+					<a class="logout-link" th:href="@{/logout}">Logout</a>
+				</li>
+			</ul>
+		</div>
 	</div>
+</nav>
+
+<br>
+<br>
+
+<div class="container">
+	<h1>Registration and Login with Spring Boot, Spring Security,
+		Thymeleaf, Hibernate, and MySQL</h1>
+	Welcome <span sec:authentication="principal.username">User</span>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+		integrity="sha384-9JNKDZ1+FMwnQ1vxIn6daTHPO72Vx62em9b8+QRbGvP3IZBm2bi/ou6y5DIkOsLp"
+		crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+		integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA8p3+i2QyA6gFJwu8U2wF1sB" crossorigin="anonymous"></script>
 </body>
 </html>
